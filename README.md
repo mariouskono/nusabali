@@ -1,4 +1,4 @@
-````markdown
+
 # NUSA BALI 🌴
 
 Proyek Capstone yang bertujuan untuk mempromosikan pariwisata dan budaya Bali melalui aplikasi berbasis web. Aplikasi ini menyediakan informasi tentang destinasi wisata, budaya lokal, dan rekomendasi destinasi berdasarkan preferensi pengguna menggunakan model machine learning.
