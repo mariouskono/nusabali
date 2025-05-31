@@ -1,0 +1,529 @@
+/* Add smooth transitions for destination page */
+* {
+  transition: all 0.3s ease;
+}
+
+body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #1e2a38;
+    }
+
+    h2 {
+      color: #1e2a38;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+      margin-bottom: 1%;
+    }    
+    .filter-group {
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background: #1e1e2f;
+      color: white;
+      padding: 20px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      margin-bottom: 30px;
+    }
+
+    .filter-group:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    label {
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+    }
+
+    select {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      background: #121212;
+      color: white;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    select:hover {
+      background: #2a2a3a;
+      transform: scale(1.02);
+    }
+
+    select:focus {
+      outline: 2px solid #4475f2;
+      background: #2a2a3a;
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+    }    .slider-container input[type="range"] {
+      width: 100%;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .slider-container input[type="range"]:hover {
+      transform: scale(1.02);
+    }
+
+    .slider-container input[type="range"]::-webkit-slider-thumb {
+      transition: all 0.3s ease;
+      transform: scale(1);
+    }
+
+    .slider-container input[type="range"]:hover::-webkit-slider-thumb {
+      transform: scale(1.2);
+      box-shadow: 0 4px 12px rgba(68, 117, 242, 0.3);
+    }
+
+    .rating-value {
+      text-align: center;
+      margin-bottom: 5px;
+      color: #f44;
+    }
+
+    #btn-tampilkan {
+      background: #2b2b38;
+      color: white;
+      width: fit-content;
+      height: 40px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      transform: scale(1);
+      transition: all 0.3s ease;
+    }
+
+    #btn-tampilkan:hover {
+      background: #3b3b4f;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+
+    .location-select {
+        width: 30%;
+      background: #1e1e2f;
+      padding: 20px;
+      border-radius: 6px;
+    }
+
+    .location-select select {
+        margin-top: 7%;
+        display: block;
+    }
+
+    .location-select label {
+        color: white;
+    }    .card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  margin-top: 24px;
+  padding: 15px 0 35px 0;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  position: relative;
+  height: 100%;
+  border: 1px solid rgba(0,0,0,0.05);
+  cursor: pointer;
+  /* Remove fixed width */
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  border-color: rgba(0,191,166,0.2);
+}
+
+.card-image-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 200px;
+  background: #f0f0f0; /* Light gray placeholder background */
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  /* Removed image transitions */
+}
+
+.card:hover .card-image-container img {
+  transform: scale(1.05);
+}
+
+.card-image-container img {
+  transition: transform 0.5s ease;
+}
+
+/* Removed image hover effects */
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+                            rgba(0,0,0,0.01) 50%, 
+                            rgba(0,0,0,0.3) 100%);
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .image-overlay {
+  opacity: 0.8;
+}
+
+.card-body {
+  padding: 18px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  position: relative;
+  z-index: 2;
+}
+
+.card-body h3 {
+  text-align: left;
+  font-size: 1.25rem;
+  color: #1e2a38;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.card:hover .card-body h3 {
+  color: #00BFA6;
+}
+
+.card-body p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0 0 12px 0;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.rating-badge {
+  font-size: 1rem;
+  color: #FF5722;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255,87,34,0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.card:hover .rating-badge {
+  transform: scale(1.05);
+  background-color: rgba(255,87,34,0.15);
+}
+
+/* Updated button style */
+.btn-rute {
+  background-color: #1e2a38;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 80px;
+  border: none;
+  font-size: 0.9rem;
+}
+
+.btn-rute:hover {
+  background-color: #33475b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-rute {
+  background-color: #00BFA6;
+  color: white;
+}
+
+.btn-rute:hover {
+  background-color: #00A78F;
+}
+
+#btn-tampilkan {
+  background: #00BFA6;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  padding: 10px 20px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#btn-tampilkan:hover {
+  background: #00A78F;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 191, 166, 0.4);
+}
+
+/* Image loading states - animations removed for card images */
+.card img.loading {
+  /* Removed animation for card images */
+  opacity: 1;
+}
+
+.card img.loaded {
+  opacity: 1;
+  /* Removed transition */
+}
+
+.card img.fallback-used {
+  opacity: 1;
+  /* Removed filter effects */
+}
+
+/* Removed pulse animation */
+
+/* Preloader for destination cards */
+.preloader {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.preloader:after {
+  content: " ";
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  border-radius: 50%;
+  border: 3px solid #00BFA6;
+  border-color: #00BFA6 transparent #00BFA6 transparent;
+  animation: preloader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes preloader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Loading container styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+  min-height: 200px;
+}
+
+.loading-container p {
+  margin-top: 20px;
+  color: #1e2a38;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.api-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 5px solid #ffeeba;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.api-warning:before {
+  content: "⚠️";
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.server-status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  display: none;
+}
+
+.server-status.online {
+  display: block;
+  background-color: #d4edda;
+  color: #155724;
+  border-left: 4px solid #28a745;
+}
+
+.server-status.offline {
+  display: block;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+}
+
+.server-status.checking {
+  display: block;
+  background-color: #e2e3e5;
+  color: #383d41;
+  border-left: 4px solid #6c757d;
+}
+
+/* Grid layout doesn't need custom scrollbar */
+
+/* Add navigation buttons for horizontal scrolling on desktop */
+.card-container-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0;
+}
+
+/* No scroll buttons needed for grid layout */
+
+/* Responsive adjustments for grid layout */
+@media (max-width: 768px) {
+  .card-container {
+    padding: 10px;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  .card-image-container {
+    height: 160px;
+  }
+  
+  .filter-group {
+    padding: 16px;
+  }
+}
+
+/* For smaller screens */
+@media (max-width: 576px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  
+  .card-image-container {
+    height: 140px;
+  }
+  
+  .card-body {
+    padding: 12px;
+  }
+  
+  .card-body h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* For very small screens, use a 1-column layout */
+@media (max-width: 420px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-image-container {
+    height: 180px;
+  }
+}
+
+/* Add fade effect to indicate scrollability */
+/* No gradient fades needed for grid layout */
+
+/* Card appearance - animations removed */
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation removed from cards as requested */
+.card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.recommendation-title {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #1e2a38;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.destination-results-section {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.destination-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}

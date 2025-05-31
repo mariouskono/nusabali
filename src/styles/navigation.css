@@ -1,0 +1,427 @@
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  width: 100%;
+  min-width: 100vw;
+  height: 70px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0;
+  margin: 0;
+  /* Menghapus transisi yang berlebihan */
+  /* Menghapus backdrop-filter yang menyebabkan blur */
+}
+
+.main-header:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  padding: 0 4rem;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+body {
+  padding-top: 70px;
+  margin: 0;
+  width: 100%;
+  min-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.brand-name {
+  display: flex;
+  align-items: center;
+  z-index: 1001;
+  padding: 0.5rem 0;
+  /* Menghapus transisi */
+}
+
+.brand-name:hover {
+  /* Menghapus efek scale yang berlebihan */
+  transform: none;
+}
+
+.brand-name img {
+  height: 40px;
+  width: auto;
+  /* Menghapus transisi */
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  height: 100%;
+}
+
+/* Navigation styles for all screen sizes */
+.nav-list {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.nav-list li {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.nav-list li a {
+  color: #333;
+  text-decoration: none;
+  padding: 0.7rem 1.2rem;
+  font-weight: 500;
+  white-space: nowrap;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  transform: translateY(0);
+}
+
+.nav-list li a:hover {
+  color: #4475f2;
+  background-color: rgba(68, 117, 242, 0.1);
+  transform: translateY(-2px);
+}
+
+.nav-list li a:focus {
+  color: #4475f2;
+  background-color: rgba(68, 117, 242, 0.1);
+  transform: translateY(-2px);
+  outline: 2px solid #4475f2;
+}
+
+.nav-list li a.active {
+  color: #4475f2;
+  background-color: rgba(68, 117, 242, 0.15);
+  transform: translateY(-1px);
+}
+
+.nav-list li a.active::before {
+  width: 80%;
+}
+
+/* Desktop navigation */
+@media (min-width: 769px) {
+  .drawer-button,
+  .drawer-close-button,
+  .menu-backdrop,
+  .navigation-drawer {
+    display: none;
+  }
+
+  .nav-container {
+    position: static;
+    width: auto;
+    height: 100%;
+    padding: 0;
+    transform: none;
+    background: transparent;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    gap: 2rem;
+    height: 100%;
+  }
+
+  .nav-list li {
+    width: auto;
+  }
+  .nav-list li a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    position: relative; /* Pastikan posisi relatif untuk pseudo-element */
+  }
+  
+  /* Membuat garis navigasi di desktop lebih konsisten */
+  .nav-list li a::after {
+    content: '';
+    position: absolute;
+    left: 1rem;  /* Sesuaikan dengan padding kiri */
+    right: 1rem; /* Sesuaikan dengan padding kanan */
+    bottom: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-list li a:hover::after,
+  .nav-list li a:focus::after,
+  .nav-list li a.active::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Mobile navigation */
+@media (max-width: 768px) {
+  .nav-list {
+    display: none;
+  }
+
+  .nav-container {
+    display: none;
+  }
+
+  .drawer-button {
+    display: flex;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #333;
+    margin-left: auto;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+  }  .navigation-drawer {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 1002;
+    transform: translateX(100%);
+    overflow-y: auto;
+    /* Kita akan menggunakan JS untuk menangani aria-hidden, bukan CSS */
+  }
+  .drawer-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 1003;
+    height: 50px;
+  }  .drawer-brand {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    margin-top: 40px; /* Memberi ruang untuk tombol close */
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .drawer-close-button {
+    display: flex;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #333;
+    align-items: center;
+    justify-content: center;
+  }  .navigation-drawer .nav-container {
+    display: block;
+    width: 100%;
+    margin-top: 0;
+    order: 0; /* Posisi tengah setelah brand */
+  }
+  
+  .navigation-drawer.open {
+    transform: translateX(0);
+  }
+  .navigation-drawer .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: 10px; /* Memberi sedikit jarak dari atas */
+    padding: 1rem 1.5rem;
+  }
+  .navigation-drawer .nav-list li {
+    width: 100%;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .navigation-drawer.open .nav-list li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .navigation-drawer .nav-list li a {
+    display: block;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    margin: 0;
+  }
+  
+  .navigation-drawer .nav-list li a:hover,
+  .navigation-drawer .nav-list li a.active {
+    background-color: #f5f5f5;
+    color: #4475f2;
+  }
+
+  .navigation-drawer .nav-list li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .navigation-drawer .nav-list li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .navigation-drawer .nav-list li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  .navigation-drawer .nav-list li:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+
+  .navigation-drawer .nav-list li a {
+    display: block;
+    padding: 1rem 1.2rem;
+    width: 100%;
+    text-align: left;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    background: transparent;
+  }
+
+  .navigation-drawer .nav-list li a::before {
+    display: none;
+  }
+  .navigation-drawer .nav-list li a:hover {
+    background-color: rgba(68, 117, 242, 0.08);
+    color: #4475f2;
+    /* Menghapus transform yang berlebihan untuk menghindari pergeseran yang tidak konsisten */
+  }
+  
+  /* Menambahkan style khusus untuk garis bawah mobile navigation */
+  .navigation-drawer .nav-list li a::after {
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    transform: none;
+  }
+  
+  .navigation-drawer .nav-list li a:hover::after {
+    width: 100%;
+  }
+
+  .navigation-drawer .nav-list li a.active {
+    background-color: rgba(68, 117, 242, 0.15);
+    color: #4475f2;
+  }
+  .drawer-close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #333;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1003;
+    transition: color 0.3s ease;
+    width: 40px;
+    height: 40px;
+  }
+
+  .drawer-close-button:hover {
+    color: #ff3333;
+  }
+  .drawer-button i {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-top: -2px;
+  }
+
+  .drawer-close-button i {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .menu-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .menu-backdrop.active {
+    display: block;
+  }
+}
+
+/* Site Header */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: 70px;
+}
+
+/* Add padding to body to account for fixed header */
+body {
+  padding-top: 70px;
+}
+
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  min-width: 100%;
+}
